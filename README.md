@@ -111,7 +111,7 @@ Combine modified data.verb with index.verb using the R script "WordNet preparati
 
 
 
-# More information about the structure of WordNet Files
+# More information about the structure of WordNet files
 
 Any text marked as a quote has been directly copied from the wordnet.princeton.edu website (source given below each paragraph).
 
@@ -231,16 +231,15 @@ Source: https://wordnet.princeton.edu/documentation/wninput5wn
 Source: https://wordnet.princeton.edu/documentation/wndb5wn
 
 
-** !**
-The Index file contains entries such as this one:
+**! The Index file contains entries such as this one:**
 
 > aggregate v 2 3 @ ~ + 2 0 02633636 01387824  
 
-It contains pointers to two senses, but it is unclear whether they are ranked in order of decreasing frequency.
+**It contains pointers to two senses, but it is unclear whether they are ranked in order of decreasing frequency.**
 
 
 
-## Data File Format (data.verb)
+## Data.verb
 
 > Each data file begins with several lines containing a copyright notice, version number, and license agreement. These lines all begin with two spaces and the line number. All other lines are in the following format. Integer fields are of fixed length and are zero-filled.
 
@@ -258,6 +257,7 @@ It contains pointers to two senses, but it is unclear whether they are ranked in
 ### ss\_type
 
 > One character code indicating the synset type:
+
 >n    NOUN 
 
 >v    VERB 
@@ -308,19 +308,20 @@ It contains pointers to two senses, but it is unclear whether they are ranked in
 >Each synset contains a gloss. A gloss is represented as a vertical bar (| ), followed by a text string that continues until the end of the line. The gloss may contain a definition, one or more example sentences, or both.
 
 
-**IMPORTANT**
+
 ### Sense Numbers
+**IMPORTANT**
 
 > Senses in WordNet are generally ordered from most to least frequently used, with the most common sense numbered 1 . Frequency of use is determined by the number of times a sense is tagged in the various semantic concordance texts. Senses that are not semantically tagged follow the ordered senses. The tagsense_cnt field for each entry in the index.pos files indicates how many of the senses in the list have been tagged.
 
 Elsewhere, the most frequent sense is given as sense 0. The numbering referred to here is possibly only consistent within a single file. data.verb contains breathe 3 several times.
 
 
-> The cntlist(5WN) file provided with the database lists the number of times each sense is tagged in the semantic concordances. The data from cntlist is used by grind(1WN) to order the senses of each word. "When the index .pos files are generated, the synset_offset s are output in sense number order, with sense 1 first in the list." Senses with the same number of semantic tags are assigned unique but consecutive sense numbers. The WordNet OVERVIEW search displays all senses of the specified word, in all syntactic categories, and indicates which of the senses are represented in the semantically tagged texts.
+> The cntlist(5WN) file provided with the database lists the number of times each sense is tagged in the semantic concordances. The data from cntlist is used by grind(1WN) to order the senses of each word. **When the index .pos files are generated, the synset_offset s are output in sense number order, with sense 1 first in the list.** Senses with the same number of semantic tags are assigned unique but consecutive sense numbers. The WordNet OVERVIEW search displays all senses of the specified word, in all syntactic categories, and indicates which of the senses are represented in the semantically tagged texts.
 
-Quotationmarks added to emphasise most important points.
+My emphasis.
 
-Exception List File Format
+> Exception List File Format
 
 > Exception lists are alphabetized lists of inflected forms of words and their base forms. The first field of each line is an inflected form, followed by a space separated list of one or more base forms of the word. There is one exception list file for each syntactic category.
 

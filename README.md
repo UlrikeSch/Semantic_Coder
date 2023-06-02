@@ -1,19 +1,17 @@
 # Semantic_Coder
  A simple semantic coder based on WordNet
 
-##############
-### Source ###
-##############
+# Source 
 
-# You find WordNet here: https://wordnet.princeton.edu/download/current-version
-# Access Date: 17.06.2022
-# Cite WordNet as: Princeton University "About WordNet." WordNet. Princeton University. 2010. 
+You find WordNet here: https://wordnet.princeton.edu/download/current-version
 
-# I downloaded the WordNet 3.1 Database files 
+Access Date: 17.06.2022
 
-########################
-### Aim of my script ###
-########################
+Cite WordNet as: Princeton University "About WordNet." WordNet. Princeton University. 2010. 
+
+I downloaded the WordNet 3.1 Database files 
+
+# Aim of my script 
 
 My aim was to create a single file which contains all verbal lemmas listed in the WordNet database and the most frequent sense of each verb (i.e. body, change, cognition, communication, competition, consumption, contact, creation, emotion, motion, perception, possession, social, stative or weather), which can then be used to code corpus-based data for verb sense. A verbal lemma will then be assigned the most frequent sense of that lemma, irrespective of the context, i.e. homography and polysemy will be disregarded and, for instance, all tokens of "give" tagged as "possession". This creates somewhat noisy data, but allows for the coding of large amounts of data.
 
@@ -21,14 +19,13 @@ The steps below document how such a file (index_verb_coded.txt) was generated. I
 
 
 
-#################################################################################
-### How the relevant information on WordNet was consolidated in a single file ###
-#################################################################################
+# How the relevant information on WordNet was consolidated in a single file
 
-# 1. The file data.verb contains a separate entry for each sense as well as a number pointing to the corresponding synset-file, i.e. to the semantic category. It is unclear which of the given senses in this file is the most frequent one. As a measure of caution, I am therefore only using it to create a link between the sense-number and the synset-file
+## Step 1
+The file data.verb contains a separate entry for each sense as well as a number pointing to the corresponding synset-file, i.e. to the semantic category. It is unclear which of the given senses in this file is the most frequent one. As a measure of caution, I am therefore only using it to create a link between the sense-number and the synset-file
 
 
-# Modifications of data.verb:
+### Modifications of data.verb:
 1. Rename as .txt.
 2. Manually delete the header.
 3. Delete anything but the two required numbers (using an editor).
@@ -38,7 +35,7 @@ Replace:\1
 Search: 29\n
 Replace:\tbody\n
 
-29	verb.body	verbs of grooming, dressing and bodily care
+> 29	verb.body	verbs of grooming, dressing and bodily care
 30	verb.change	verbs of size, temperature change, intensifying, etc.
 31	verb.cognition	verbs of thinking, judging, analyzing, doubting
 32	verb.communication	verbs of telling, asking, ordering, singing
@@ -53,12 +50,14 @@ Replace:\tbody\n
 41	verb.social	verbs of political and social activities and events
 42	verb.stative	verbs of being, having, spatial relations
 43	verb.weather	verbs of raining, snowing, thawing, thundering
-#Source: https://wordnet.princeton.edu/documentation/lexnames5wn
+
+Source: https://wordnet.princeton.edu/documentation/lexnames5wn
 
 
-# 2. The file index.verb contains all lemmas (i.e. infinitives, but only one entry per form, even in the case of homography/polysemy) and all senses associated with a lemma in order of decreasing frequency. The aim of this step is to link each lemma with its most frequent sense.
+## Step 2
+The file index.verb contains all lemmas (i.e. infinitives, but only one entry per form, even in the case of homography/polysemy) and all senses associated with a lemma in order of decreasing frequency. The aim of this step is to link each lemma with its most frequent sense.
 
-# Modification of index.verb:
+### Modification of index.verb:
 1. Rename as .txt.
 2. Manually delete the header.
 3. Delete anything but the sense number and the lemma.
@@ -70,12 +69,15 @@ Replace:\1
 5. Manually delete the last (empty) row.
 6. Replace all underscores with hyphens (made it more likely to find forms in my corpus output).
 
-# Relevant info:
+**Relevant info:
 Senses in WordNet are generally ordered from most to least frequently used, with the most common sense numbered 1 . Frequency of use is determined by the number of times a sense is tagged in the various semantic concordance texts. Senses that are not semantically tagged follow the ordered senses. The tagsense_cnt field for each entry in the index.pos files indicates how many of the senses in the list have been tagged.
-#Source: https://wordnet.princeton.edu/documentation/wndb5wn
+
+Source: https://wordnet.princeton.edu/documentation/wndb5wn
 
 
-# 3. Combine modified data.verb with index.verb using the R script "WordNet preparation.R".
+## Step 3
+
+Combine modified data.verb with index.verb using the R script "WordNet preparation.R".
 
 
 
@@ -83,9 +85,7 @@ Senses in WordNet are generally ordered from most to least frequently used, with
 
 
 
-############################################################
-### Mor information about the structure of WordNet Files ###
-############################################################
+# More information about the structure of WordNet Files
 
 # From here on out, any text not preceded by a hash has been directly copied from the wordnet.princeton.edu website (source given below each paragraph).
 

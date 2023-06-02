@@ -181,13 +181,13 @@ Source: https://wordnet.princeton.edu/documentation/wndb5wn
 > Syntactic category: n for noun files, v for verb files, a for adjective files, r for adverb files.
 >All remaining fields are with respect to senses of lemma in pos .
 
-###synset\_cnt
+### synset\_cnt
 > Number of synsets that lemma is in. This is the number of senses of the word in WordNet. See Sense Numbers below for a discussion of how sense numbers are assigned and the order of synset_offset s in the index files.
 
-###p\_cnt
+### p\_cnt
 >Number of different pointers that lemma has in all synsets containing it.
 
-###ptr_symbol
+### ptr_symbol
 >A space separated list of p\_cnt different types of pointers that lemma has in all synsets containing it. See wninput(5WN) for a list of pointer\_symbol s. If all senses of lemma have no pointers, this field is omitted and p\_cnt is 0 .
 
 >The pointer_symbol s for verbs are:
@@ -216,15 +216,15 @@ Source: https://wordnet.princeton.edu/documentation/wndb5wn
 
 Source: https://wordnet.princeton.edu/documentation/wninput5wn
 
-###sense\_cnt
+### sense\_cnt
 
 >Same as sense\_cnt above. This is redundant, but the field was preserved for compatibility reasons.
 
-###tagsense\_cnt
+### tagsense\_cnt
 
 > Number of senses of lemma that are ranked according to their frequency of occurrence in semantic concordance texts.
 
-###synset\_offset
+### synset\_offset
 
 >Byte offset in data.pos file of a synset containing lemma . Each synset\_offset in the list corresponds to a different sense of lemma in WordNet. synset\_offset is an 8 digit, zero-filled decimal integer that can be used with fseek(link is external)(3)(link is external) to read a synset from the data file. When passed to read_synset(3WN) along with the syntactic category, a data structure containing the parsed synset is returned.
 
@@ -246,7 +246,7 @@ It contains pointers to two senses, but it is unclear whether they are ranked in
 
 `synset_offset  lex_filenum  ss_type  w_cnt  word  lex_id  [word  lex_id...]  p_cnt  [ptr...]  [frames...]  |   gloss `
 
-###synset\_offset
+### synset\_offset
 
 > Current byte offset in the file represented as an 8 digit decimal integer.
 
@@ -255,7 +255,7 @@ It contains pointers to two senses, but it is unclear whether they are ranked in
 > Two digit decimal integer corresponding to the lexicographer file name containing the synset. See lexnames(5WN)(link is external) for the list of filenames and their corresponding numbers.
 
 
-###ss\_type
+### ss\_type
 
 > One character code indicating the synset type:
 >n    NOUN 
@@ -268,23 +268,23 @@ It contains pointers to two senses, but it is unclear whether they are ranked in
 
 >r    ADVERB 
 
-###w\_cnt
+### w\_cnt
 
 > Two digit hexadecimal integer indicating the number of words in the synset.
 
-###word
+### word
 
 > ASCII form of a word as entered in the synset by the lexicographer, with spaces replaced by underscore characters (_ ). The text of the word is case sensitive, in contrast to its form in the corresponding index.pos file, that contains only lower-case forms.
 
-###lex_id
+### lex_id
 
 > One digit hexadecimal integer that, when appended onto lemma , uniquely identifies a sense within a lexicographer file. lex\_id numbers usually start with 0 , and are incremented as additional senses of the word are added to the same file, although there is no requirement that the numbers be consecutive or begin with 0 . Note that a value of 0 is the default, and therefore is not present in lexicographer files.
 
-###p\_cnt
+### p\_cnt
 
 > Three digit decimal integer indicating the number of pointers from this synset to other synsets. If p_cnt is 000 the synset has no pointers.
 
-###ptr
+### ptr
 
 >A pointer from this synset to another. ptr is of the form:
 >`pointer_symbol  synset_offset  pos  source/target` 
@@ -296,20 +296,20 @@ It contains pointers to two senses, but it is unclear whether they are ranked in
 
 >See wninput(5WN) for a list of pointer\_symbol s, and semantic and lexical pointer classifications.
 
-###frames
+### frames
 
 >In data.verb only, a list of numbers corresponding to the generic verb sentence frames for word s in the synset. frames is of the form:
 > `f_cnt   +   f_num  w_num  [ +   f_num  w_num...]` 
 
 >where f\_cnt a two digit decimal integer indicating the number of generic frames listed, f\_num is a two digit decimal integer frame number, and w\_num is a two digit hexadecimal integer indicating the word in the synset that the frame applies to. As with pointers, if this number is 00 , f\_num applies to all word s in the synset. If non-zero, it is applicable only to the word indicated. Word numbers are assigned as described for pointers. Each f\_num  w\_num pair is preceded by a + . See wninput(5WN) for the text of the generic sentence frames.
 
-###gloss
+### gloss
 
 >Each synset contains a gloss. A gloss is represented as a vertical bar (| ), followed by a text string that continues until the end of the line. The gloss may contain a definition, one or more example sentences, or both.
 
 
 **IMPORTANT**
-###Sense Numbers
+### Sense Numbers
 
 > Senses in WordNet are generally ordered from most to least frequently used, with the most common sense numbered 1 . Frequency of use is determined by the number of times a sense is tagged in the various semantic concordance texts. Senses that are not semantically tagged follow the ordered senses. The tagsense_cnt field for each entry in the index.pos files indicates how many of the senses in the list have been tagged.
 

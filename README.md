@@ -29,11 +29,17 @@ The file data.verb contains a separate entry for each sense as well as a number 
 1. Rename as .txt.
 2. Manually delete the header.
 3. Delete anything but the two required numbers (using an editor).
-Search:^(\d{8} \d{2}).+
-Replace:\1
+
+Search:`^(\d{8} \d{2}).+`
+
+Replace:`\1`
+
 4. Replace numbers with the corresponding sense, based on the list below, e.g.:
-Search: 29\n
-Replace:\tbody\n
+
+Search:` 29\n`
+
+Replace:`\tbody\n`
+
 
 > 29	verb.body	verbs of grooming, dressing and bodily care
 
@@ -75,11 +81,17 @@ The file index.verb contains all lemmas (i.e. infinitives, but only one entry pe
 1. Rename as .txt.
 2. Manually delete the header.
 3. Delete anything but the sense number and the lemma.
-Search:( ..?){1,} 
-Replace:\t
+
+Search:`( ..?){1,} `
+
+Replace:`\t`
+
 4. Delete als sense numbers but the first one.
-Search: (\t\d+) .+
-Replace:\1
+
+Search:` (\t\d+) .+`
+
+Replace:`\1`
+
 5. Manually delete the last (empty) row.
 6. Replace all underscores with hyphens (made it more likely to find forms in my corpus output).
 
@@ -101,24 +113,27 @@ Combine modified data.verb with index.verb using the R script "WordNet preparati
 
 # More information about the structure of WordNet Files
 
-# From here on out, any text not preceded by a hash has been directly copied from the wordnet.princeton.edu website (source given below each paragraph).
+Any text marked as a quote has been directly copied from the wordnet.princeton.edu website (source given below each paragraph).
 
 
 
-### Lexicographer files ###
-# e.g. the file verb.contact
-Lexicographer files correspond to the syntactic categories implemented in WordNet - noun, verb, adjective and adverb. All of the synsets in a lexicographer file are in the same syntactic category. Each synset consists of a list of synonymous words or collocations (eg. "fountain pen" , "take in" ), and pointers that describe the relations between this synset and other synsets. These relations include (but are not limited to) hypernymy/hyponymy, antonymy, entailment, and meronymy/holonymy. A word or collocation may appear in more than one synset, and in more than one part of speech. Each use of a word in a synset represents a sense of that word in the part of speech corresponding to the synset.
-#Source: https://wordnet.princeton.edu/documentation/wninput5wn
+## Lexicographer files
+e.g. the file verb.contact
 
-# one synset = one line
-For verbs, the basic synset syntax is defined as follows:
-{   words  pointers  frames   (  gloss  )  } 
+> Lexicographer files correspond to the syntactic categories implemented in WordNet - noun, verb, adjective and adverb. All of the synsets in a lexicographer file are in the same syntactic category. Each synset consists of a list of synonymous words or collocations (eg. "fountain pen" , "take in" ), and pointers that describe the relations between this synset and other synsets. These relations include (but are not limited to) hypernymy/hyponymy, antonymy, entailment, and meronymy/holonymy. A word or collocation may appear in more than one synset, and in more than one part of speech. Each use of a word in a synset represents a sense of that word in the part of speech corresponding to the synset.
 
-Word/pointer syntax is of the form:
-[   word[ ( marker ) ][lex_id] ,   pointers   ] 
+Source: https://wordnet.princeton.edu/documentation/wninput5wn
 
-For verbs, the word/pointer syntax is extended in the following manner to allow the user to specify generic sentence frames that, like pointers, correspond only to a specific word, rather than all the words in the synset. In this case, pointers are optional.
-[   word ,   [pointers]  frames   ] 
+## one synset = one line
+
+> For verbs, the basic synset syntax is defined as follows:
+> `{   words  pointers  frames   (  gloss  )  }` 
+
+>Word/pointer syntax is of the form:
+>`[   word[ ( marker ) ][lex_id] ,   pointers   ] `
+
+>For verbs, the word/pointer syntax is extended in the following manner to allow the user to specify generic sentence frames that, like pointers, correspond only to a specific word, rather than all the words in the synset. In this case, pointers are optional.
+>[   word ,   [pointers]  frames   ] 
 
 Pointers are optional in synsets. If a pointer is specified outside of a word/pointer set, the relation is applied to all of the words in the synset, including any words specified using the word/pointer syntax. This indicates a semantic relation between the meanings of the words in the synsets. If specified within a word/pointer set, the relation corresponds only to the word in the set and represents a lexical relation.
 A pointer is of the form:

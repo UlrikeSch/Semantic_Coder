@@ -36,19 +36,33 @@ Search: 29\n
 Replace:\tbody\n
 
 > 29	verb.body	verbs of grooming, dressing and bodily care
+
 > 30	verb.change	verbs of size, temperature change, intensifying, etc.
+
 > 31	verb.cognition	verbs of thinking, judging, analyzing, doubting
+
 > 32	verb.communication	verbs of telling, asking, ordering, singing
+
 > 33	verb.competition	verbs of fighting, athletic activities
+
 > 34	verb.consumption	verbs of eating and drinking
+
 > 35	verb.contact	verbs of touching, hitting, tying, digging
+
 > 36	verb.creation	verbs of sewing, baking, painting, performing
+
 > 37	verb.emotion	verbs of feeling
+
 > 38	verb.motion	verbs of walking, flying, swimming
+
 > 39	verb.perception	verbs of seeing, hearing, feeling
+
 > 40	verb.possession	verbs of buying, selling, owning
+
 > 41	verb.social	verbs of political and social activities and events
+
 > 42	verb.stative	verbs of being, having, spatial relations
+
 > 43	verb.weather	verbs of raining, snowing, thawing, thundering
 
 Source: https://wordnet.princeton.edu/documentation/lexnames5wn
@@ -69,7 +83,7 @@ Replace:\1
 5. Manually delete the last (empty) row.
 6. Replace all underscores with hyphens (made it more likely to find forms in my corpus output).
 
-**Relevant info:
+**Relevant info:**
 Senses in WordNet are generally ordered from most to least frequently used, with the most common sense numbered 1 . Frequency of use is determined by the number of times a sense is tagged in the various semantic concordance texts. Senses that are not semantically tagged follow the ordered senses. The tagsense_cnt field for each entry in the index.pos files indicates how many of the senses in the list have been tagged.
 
 Source: https://wordnet.princeton.edu/documentation/wndb5wn
